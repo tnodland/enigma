@@ -32,6 +32,25 @@ class Enigma
     @a_shift += square_array[6].to_i
     @b_shift += square_array[7].to_i
     @c_shift += square_array[8].to_i
-    @d_shift += square_array[9].to_i 
+    @d_shift += square_array[9].to_i
+  end
+
+  def encrypt(message, key, date)
+    self.key_converter(key)
+    self.date_shifter(date)
+    message = message.downcase
+    encrypted_message = []
+    message_array = message.split ""
+
+    loop do
+      if message_array.length >= 4
+        letter_shifted_by_a = message_array.shift
+        letter_shifted_by_b = message_array.shift
+        letter_shifted_by_c = message_array.shift
+        letter_shifted_by_d = message_array.shift
+
+
+      end
+    end
   end
 end
