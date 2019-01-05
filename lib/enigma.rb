@@ -17,8 +17,8 @@ class Enigma
   end
 
   def key_converter(key)
-    key_string = '0%o' % key
-    key_array = key_string.split ""
+    # key_string = '0%o' % key
+    key_array = key.split ""
 
     @a_shift = key_array[0].to_i * 10 + key_array[1].to_i
     @b_shift = key_array[1].to_i * 10 + key_array[2].to_i
