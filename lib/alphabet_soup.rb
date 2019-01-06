@@ -13,4 +13,8 @@ class AlphabetSoup
     @c_shift = c_shift
     @d_shift = d_shift
   end
+
+  def rotate_alphabet(shift)
+    return @letters.rotate(shift)
+  end
 end
