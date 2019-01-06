@@ -81,8 +81,6 @@ class Enigma
           end
         encrypted_message_array << temp_letter_array.rotate(@d_shift).first
 
-
-
       elsif message_array.length == 3
         letter_shifted_by_a = message_array.shift
           @letters.each do |letter|
@@ -137,6 +135,120 @@ class Enigma
       else
         encryption_hash[:encryption] = encrypted_message_array.join
         return encryption_hash
+      end
+    end
+  end
+
+  def decrypt(ciphertext, key, date)
+    decryption_hash = {decryption: "",
+    key: key,
+    date: date}
+    self.key_converter(key)
+    self.date_shifter(date)
+    @a_shift = @a_shift % 27 if @a_shift > 27
+    @b_shift = @b_shift % 27 if @b_shift > 27
+    @c_shift = @c_shift % 27 if @c_shift > 27
+    @d_shift = @d_shift % 27 if @d_shift > 27
+
+    decrypt_a_shift = 27 - @a_shift
+    decrypt_b_shift = 27 - @b_shift
+    decrypt_c_shift = 27 - @c_shift
+    decrypt_d_shift = 27 - @d_shift
+
+    ciphertext = ciphertext.downcase
+    decrypted_message_array = []
+    ciphertext_message_array = ciphertext.split ""
+
+    loop do
+      temp_letter_array = []
+
+      if ciphertext_message_array.length >= 4
+        letter_shifted_by_a = ciphertext_message_array.shift
+          @letters.each do |letter|
+            if letter_shifted_by_a == letter
+              temp_letter_array = @letters.rotate(@letters.index(letter))
+            end
+          end
+        decrypted_message_array << temp_letter_array.rotate(decrypt_a_shift).first
+
+        letter_shifted_by_b = ciphertext_message_array.shift
+          @letters.each do |letter|
+            if letter_shifted_by_b == letter
+              temp_letter_array = @letters.rotate(@letters.index(letter))
+            end
+          end
+        decrypted_message_array << temp_letter_array.rotate(decrypt_b_shift).first
+
+        letter_shifted_by_c = ciphertext_message_array.shift
+          @letters.each do |letter|
+            if letter_shifted_by_c == letter
+              temp_letter_array = @letters.rotate(@letters.index(letter))
+            end
+          end
+        decrypted_message_array << temp_letter_array.rotate(decrypt_c_shift).first
+
+        letter_shifted_by_d = ciphertext_message_array.shift
+          @letters.each do |letter|
+            if letter_shifted_by_d == letter
+              temp_letter_array = @letters.rotate(@letters.index(letter))
+            end
+          end
+        decrypted_message_array << temp_letter_array.rotate(decrypt_d_shift).first
+
+      elsif ciphertext_message_array.length == 3
+        letter_shifted_by_a = ciphertext_message_array.shift
+          @letters.each do |letter|
+            if letter_shifted_by_a == letter
+              temp_letter_array = @letters.rotate(@letters.index(letter))
+            end
+          end
+        decrypted_message_array << temp_letter_array.rotate(decrypt_a_shift).first
+
+        letter_shifted_by_b = ciphertext_message_array.shift
+          @letters.each do |letter|
+            if letter_shifted_by_b == letter
+              temp_letter_array = @letters.rotate(@letters.index(letter))
+            end
+          end
+        decrypted_message_array << temp_letter_array.rotate(decrypt_b_shift).first
+
+        letter_shifted_by_c = ciphertext_message_array.shift
+          @letters.each do |letter|
+            if letter_shifted_by_c == letter
+              temp_letter_array = @letters.rotate(@letters.index(letter))
+            end
+          end
+        decrypted_message_array << temp_letter_array.rotate(decrypt_c_shift).first
+
+      elsif ciphertext_message_array.length == 2
+        letter_shifted_by_a = ciphertext_message_array.shift
+          @letters.each do |letter|
+            if letter_shifted_by_a == letter
+              temp_letter_array = @letters.rotate(@letters.index(letter))
+            end
+          end
+        decrypted_message_array << temp_letter_array.rotate(decrypt_a_shift).first
+
+        letter_shifted_by_b = ciphertext_message_array.shift
+          @letters.each do |letter|
+            if letter_shifted_by_b == letter
+              temp_letter_array = @letters.rotate(@letters.index(letter))
+            end
+          end
+        decrypted_message_array << temp_letter_array.rotate(decrypt_b_shift).first
+
+      elsif ciphertext_message_array.length == 1
+        letter_shifted_by_a = ciphertext_message_array.shift
+          @letters.each do |letter|
+            if letter_shifted_by_a == letter
+              temp_letter_array = @letters.rotate(@letters.index(letter))
+            end
+          end
+        decrypted_message_array << temp_letter_array.rotate(decrypt_a_shift).first
+
+      else
+        decryption_hash[:decryption] = decrypted_message_array.join
+        return decryption_hash
       end
     end
   end
