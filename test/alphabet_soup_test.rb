@@ -13,12 +13,16 @@ class AlphabetSoupTest < Minitest::Test
   def test_it_has_attributes
     soup = AlphabetSoup.new(3, 27, 73, 20)
 
-    expected = expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
+    expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
+    expected_a_shift_array = ["d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "a", "b", "c"]
+    expected_c_shift_array = ["t", "u", "v", "w", "x", "y", "z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s"]
+    expected_d_shift_array = ["u", "v", "w", "x", "y", "z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t"]
 
     assert_equal expected, soup.letters
-    assert_equal 3, soup.a_shift
-    assert_equal 27, soup.b_shift
-    assert_equal 73, soup.c_shift
-    assert_equal 20, soup.d_shift
+    assert_equal expected_a_shift_array, soup.a_shift_array
+    assert_equal expected, soup.b_shift_array
+    assert_equal expected_c_shift_array, soup.c_shift_array
+    assert_equal expected_d_shift_array, soup.d_shift_array
   end
+
 end
