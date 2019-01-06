@@ -36,6 +36,9 @@ class Enigma
   end
 
   def encrypt(message, key, date)
+    encryption_hash = {encryption: "",
+    key: key,
+    date: date}
     self.key_converter(key)
     self.date_shifter(date)
     message = message.downcase
@@ -132,9 +135,9 @@ class Enigma
         encrypted_message_array << temp_letter_array.rotate(@a_shift).first
 
       else
-        break
+        encryption_hash[:encryption] = encrypted_message_array.join
+        return encryption_hash
       end
     end
-    encrypted_message = encrypted_message_array.join
   end
 end

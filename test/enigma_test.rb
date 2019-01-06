@@ -48,9 +48,9 @@ class EnigmaTest < Minitest::Test
   def test_it_can_encrypt
     enigma = Enigma.new
 
-    assert_equal "keder ohulw" ,enigma.encrypt("hello world", "02715", "040895")
-    assert_equal "uktuasfttghf", enigma.encrypt("TEST MESSAGE", "00001", "010619")
-    assert_equal "gzypvljpddhcx", enigma.encrypt("coverage test", "29292", "010101")
-    assert_equal "gzypvljpddhcxd", enigma.encrypt("coverage test2", "29292", "010101")
+    assert_equal ({:encryption=>"keder ohulw", :key=>"02715", :date=>"040895"}) ,enigma.encrypt("hello world", "02715", "040895")
+    assert_equal ({:encryption=>"uktuasfttghf", :key=>"00001", :date=>"010619"}), enigma.encrypt("TEST MESSAGE", "00001", "010619")
+    assert_equal ({:encryption=>"gzypvljpddhcx", :key=>"29292", :date=>"010101"}), enigma.encrypt("coverage test", "29292", "010101")
+    assert_equal ({:encryption=>"gzypvljpddhcxd", :key=>"29292", :date=>"010101"}), enigma.encrypt("coverage test2", "29292", "010101")
   end
 end
