@@ -49,5 +49,8 @@ class EnigmaTest < Minitest::Test
     enigma = Enigma.new
 
     assert_equal "keder ohulw" ,enigma.encrypt("hello world", "02715", "040895")
+    assert_equal "uktuasfttghf", enigma.encrypt("TEST MESSAGE", "00001", "010619")
+    assert_equal "gzypvljpddhcx", enigma.encrypt("coverage test", "29292", "010101")
+    assert_equal "gzypvljpddhcxd", enigma.encrypt("coverage test2", "29292", "010101")
   end
 end
