@@ -36,6 +36,20 @@ class Enigma
     @d_shift += square_array[9].to_i
   end
 
+  def index_converter(message)
+    message = message.downcase
+    message_array = message.split ""
+    index_array = []
+    message_array.each do |message_letter|
+      @letters.each do |letter|
+        if message_letter == letter
+          index_array << @letters.index(letter)
+        end
+      end
+    end
+    index_array
+  end
+
   def encrypt(message, key, date)
     encryption_hash = {encryption: "",
     key: key,
@@ -45,6 +59,7 @@ class Enigma
     message = message.downcase
     encrypted_message_array = []
     message_array = message.split ""
+    soup = AlphabetSoup.new(@a_shift, @b_shift, @c_shift, @d_shift)
 
     loop do
       temp_letter_array = []

@@ -45,6 +45,12 @@ class EnigmaTest < Minitest::Test
     assert_equal 20, enigma.d_shift
   end
 
+  def test_it_can_return_message_array_of_indexes
+    enigma = Enigma.new
+
+    assert_equal [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3], enigma.index_converter("hello world")
+  end
+
   def test_it_can_encrypt
     enigma = Enigma.new
 
