@@ -72,7 +72,7 @@ class EnigmaTest < Minitest::Test
   def test_it_can_make_keys
     enigma = Enigma.new
 
-    key_array = enigma.make_key.split ""
+    key_array = enigma.generate_key
 
     assert_instance_of Integer, enigma.make_key
     assert_equal 5, key_array.length
