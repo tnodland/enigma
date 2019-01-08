@@ -1,7 +1,9 @@
 require 'pry'
 require './lib/alphabet_soup'
+require './lib/key_maker'
 
 class Enigma
+  include KeyMaker
 
   attr_reader :letters,
               :a_shift,
@@ -151,7 +153,7 @@ class Enigma
       elsif index_array.length == 1
         letter_shifted_by_a = index_array.shift
         decrypted_message_array << soup.a_shift_array[letter_shifted_by_a]
-        
+
       else
         decryption_hash[:decryption] = decrypted_message_array.join
         return decryption_hash

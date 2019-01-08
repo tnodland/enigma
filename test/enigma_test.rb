@@ -68,4 +68,13 @@ class EnigmaTest < Minitest::Test
     assert_equal ({:decryption=>"coverage test", :key=>"29292", :date=>"010101"}), enigma.decrypt("gzypvljpddhcx", "29292", "010101")
     assert_equal ({:decryption=>"coverage testa", :key=>"29292", :date=>"010101"}), enigma.decrypt("gzypvljpddhcxl", "29292", "010101")
   end
+
+  def test_it_can_make_keys
+    enigma = Enigma.new
+
+    key_array = enigma.make_key.split ""
+
+    assert_instance_of Integer, enigma.make_key
+    assert_equal 5, key_array.length
+  end
 end
