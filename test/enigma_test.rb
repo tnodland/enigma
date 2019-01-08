@@ -74,7 +74,18 @@ class EnigmaTest < Minitest::Test
 
     key_array = enigma.generate_key
 
-    assert_instance_of Integer, enigma.make_key
+    assert_instance_of String, enigma.make_key
     assert_equal 5, key_array.length
+  end
+
+  def test_it_can_encrypt_with_limited_inputs
+    enigma = Enigma.new
+
+    expected = {:encryption=>"nfrsuabvxmj",
+      :key=>"02029",
+      :date=>"08012019"}
+
+    assert_equal expected, enigma.encrypt("hello world", "02029")
+    assert_instance_of Hash, enigma.encrypt("hello world")
   end
 end

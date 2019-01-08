@@ -52,7 +52,7 @@ class Enigma
     index_array
   end
 
-  def encrypt(message, key, date)
+  def encrypt(message, key = make_key, date = Time.now.strftime("%d%m%Y"))
     encryption_hash = {encryption: "",
     key: key,
     date: date}
