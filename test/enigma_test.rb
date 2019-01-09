@@ -90,4 +90,19 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.encrypt("hello world", "02029")
     assert_instance_of Hash, enigma.encrypt("hello world")
   end
+
+  def test_it_can_adjust_shifts_for_decryption
+    enigma = Enigma.new
+    enigma.key_converter("21212")
+
+    enigma.shift_converter(enigma.a_shift)
+    enigma.shift_converter(enigma.b_shift)
+    enigma.shift_converter(enigma.c_shift)
+    enigma.shift_converter(enigma.d_shift)
+
+    assert_equal 21, enigma.a_shift
+    assert_equal 12, enigma.b_shift
+    assert_equal 21, enigma.c_shift
+    assert_equal 12, enigma.d_shift
+  end
 end

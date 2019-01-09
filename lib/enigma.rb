@@ -1,9 +1,11 @@
 require 'pry'
 require './lib/alphabet_soup'
 require './lib/key_maker'
+require './lib/shifter'
 
 class Enigma
   include KeyMaker
+  include Shifter
 
   attr_reader :letters,
               :a_shift,
@@ -105,15 +107,11 @@ class Enigma
     date: date}
     self.key_converter(key)
     self.date_shifter(date)
-    @a_shift = @a_shift % 27 if @a_shift > 27
-    @b_shift = @b_shift % 27 if @b_shift > 27
-    @c_shift = @c_shift % 27 if @c_shift > 27
-    @d_shift = @d_shift % 27 if @d_shift > 27
 
-    decrypt_a_shift = 27 - @a_shift
-    decrypt_b_shift = 27 - @b_shift
-    decrypt_c_shift = 27 - @c_shift
-    decrypt_d_shift = 27 - @d_shift
+    decrypt_a_shift = self.shift_converter(@a_shift)
+    decrypt_b_shift = self.shift_converter(@b_shift)
+    decrypt_c_shift = self.shift_converter(@c_shift)
+    decrypt_d_shift = self.shift_converter(@d_shift)
 
     index_array = self.index_converter(ciphertext)
     soup = AlphabetSoup.new(decrypt_a_shift, decrypt_b_shift, decrypt_c_shift, decrypt_d_shift)
