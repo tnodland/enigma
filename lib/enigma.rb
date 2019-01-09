@@ -73,47 +73,29 @@ class Enigma
     date: date}
     self.key_converter(key)
     self.date_shifter(date)
-
     decrypt_a_shift = self.shift_converter(@a_shift)
     decrypt_b_shift = self.shift_converter(@b_shift)
     decrypt_c_shift = self.shift_converter(@c_shift)
     decrypt_d_shift = self.shift_converter(@d_shift)
-
     index_array = self.index_converter(ciphertext)
     soup = AlphabetSoup.new(decrypt_a_shift, decrypt_b_shift, decrypt_c_shift, decrypt_d_shift)
-
     decrypted_message_array = []
 
     loop do
       if index_array.length >= 4
-        letter_shifted_by_a = index_array.shift
-        decrypted_message_array << soup.a_shift_array[letter_shifted_by_a]
-        letter_shifted_by_b = index_array.shift
-        decrypted_message_array << soup.b_shift_array[letter_shifted_by_b]
-        letter_shifted_by_c = index_array.shift
-        decrypted_message_array << soup.c_shift_array[letter_shifted_by_c]
-        letter_shifted_by_d = index_array.shift
-        decrypted_message_array << soup.d_shift_array[letter_shifted_by_d]
-
+        self.shift_applier(index_array, decrypted_message_array, soup.a_shift_array)
+        self.shift_applier(index_array, decrypted_message_array, soup.b_shift_array)
+        self.shift_applier(index_array, decrypted_message_array, soup.c_shift_array)
+        self.shift_applier(index_array, decrypted_message_array, soup.d_shift_array)
       elsif index_array.length == 3
-        letter_shifted_by_a = index_array.shift
-        decrypted_message_array << soup.a_shift_array[letter_shifted_by_a]
-        letter_shifted_by_b = index_array.shift
-        decrypted_message_array << soup.b_shift_array[letter_shifted_by_b]
-        letter_shifted_by_c = index_array.shift
-        decrypted_message_array << soup.c_shift_array[letter_shifted_by_c]
-        letter_shifted_by_d = index_array.shift
-
+        self.shift_applier(index_array, decrypted_message_array, soup.a_shift_array)
+        self.shift_applier(index_array, decrypted_message_array, soup.b_shift_array)
+        self.shift_applier(index_array, decrypted_message_array, soup.c_shift_array)
       elsif index_array.length == 2
-        letter_shifted_by_a = index_array.shift
-        decrypted_message_array << soup.a_shift_array[letter_shifted_by_a]
-        letter_shifted_by_b = index_array.shift
-        decrypted_message_array << soup.b_shift_array[letter_shifted_by_b]
-
+        self.shift_applier(index_array, decrypted_message_array, soup.a_shift_array)
+        self.shift_applier(index_array, decrypted_message_array, soup.b_shift_array)
       elsif index_array.length == 1
-        letter_shifted_by_a = index_array.shift
-        decrypted_message_array << soup.a_shift_array[letter_shifted_by_a]
-
+        self.shift_applier(index_array, decrypted_message_array, soup.a_shift_array)
       else
         decryption_hash[:decryption] = decrypted_message_array.join
         return decryption_hash
