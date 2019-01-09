@@ -48,34 +48,12 @@ class Enigma
   end
 
   def decrypt(ciphertext, key, date)
-    decryption_hash = {decryption: "",
-    key: key,
-    date: date}
+    decryption_hash = {decryption: "", key: key, date: date}
     self.key_converter(key)
     self.date_shifter(date)
     index_array = self.index_converter(ciphertext)
     soup = AlphabetSoup.new(self.shift_converter(@a_shift), self.shift_converter(@b_shift), self.shift_converter(@c_shift), self.shift_converter(@d_shift))
     decrypted_message_array = []
-
-    loop do
-      if index_array.length >= 4
-        self.shift_applier(index_array, decrypted_message_array, soup.a_shift_array)
-        self.shift_applier(index_array, decrypted_message_array, soup.b_shift_array)
-        self.shift_applier(index_array, decrypted_message_array, soup.c_shift_array)
-        self.shift_applier(index_array, decrypted_message_array, soup.d_shift_array)
-      elsif index_array.length == 3
-        self.shift_applier(index_array, decrypted_message_array, soup.a_shift_array)
-        self.shift_applier(index_array, decrypted_message_array, soup.b_shift_array)
-        self.shift_applier(index_array, decrypted_message_array, soup.c_shift_array)
-      elsif index_array.length == 2
-        self.shift_applier(index_array, decrypted_message_array, soup.a_shift_array)
-        self.shift_applier(index_array, decrypted_message_array, soup.b_shift_array)
-      elsif index_array.length == 1
-        self.shift_applier(index_array, decrypted_message_array, soup.a_shift_array)
-      else
-        decryption_hash[:decryption] = decrypted_message_array.join
-        return decryption_hash
-      end
-    end
+    self.conversion_loop(index_array, decrypted_message_array, soup, decryption_hash)
   end
 end

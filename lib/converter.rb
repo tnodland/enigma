@@ -17,7 +17,7 @@ module Converter
       elsif index_array.length == 1
         self.shift_applier(index_array, final_array, soup.a_shift_array)
       else
-        output_hash[:encryption] = final_array.join
+        output_hash.values[0] << final_array.join
         return output_hash
       end
     end
