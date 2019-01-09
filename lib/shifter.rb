@@ -18,4 +18,9 @@ module Shifter
     @c_shift += square_array[8].to_i
     @d_shift += square_array[9].to_i
   end
+
+  def shift_applier(index_array, message_array, soup_array)
+    shifted_letter = index_array.shift
+    message_array << soup_array[shifted_letter]
+  end
 end
