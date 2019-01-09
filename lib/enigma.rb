@@ -51,34 +51,15 @@ class Enigma
         self.shift_applier(index_array, encrypted_message_array, soup.b_shift_array)
         self.shift_applier(index_array, encrypted_message_array, soup.c_shift_array)
         self.shift_applier(index_array, encrypted_message_array, soup.d_shift_array)
-        # letter_shifted_by_a = index_array.shift
-        # encrypted_message_array << soup.a_shift_array[letter_shifted_by_a]
-        # letter_shifted_by_b = index_array.shift
-        # encrypted_message_array << soup.b_shift_array[letter_shifted_by_b]
-        # letter_shifted_by_c = index_array.shift
-        # encrypted_message_array << soup.c_shift_array[letter_shifted_by_c]
-        # letter_shifted_by_d = index_array.shift
-        # encrypted_message_array << soup.d_shift_array[letter_shifted_by_d]
-
       elsif index_array.length == 3
-        letter_shifted_by_a = index_array.shift
-        encrypted_message_array << soup.a_shift_array[letter_shifted_by_a]
-        letter_shifted_by_b = index_array.shift
-        encrypted_message_array << soup.b_shift_array[letter_shifted_by_b]
-        letter_shifted_by_c = index_array.shift
-        encrypted_message_array << soup.c_shift_array[letter_shifted_by_c]
-        letter_shifted_by_d = index_array.shift
-
+        self.shift_applier(index_array, encrypted_message_array, soup.a_shift_array)
+        self.shift_applier(index_array, encrypted_message_array, soup.b_shift_array)
+        self.shift_applier(index_array, encrypted_message_array, soup.c_shift_array)
       elsif index_array.length == 2
-        letter_shifted_by_a = index_array.shift
-        encrypted_message_array << soup.a_shift_array[letter_shifted_by_a]
-        letter_shifted_by_b = index_array.shift
-        encrypted_message_array << soup.b_shift_array[letter_shifted_by_b]
-
+        self.shift_applier(index_array, encrypted_message_array, soup.a_shift_array)
+        self.shift_applier(index_array, encrypted_message_array, soup.b_shift_array)
       elsif index_array.length == 1
-        letter_shifted_by_a = index_array.shift
-        encrypted_message_array << soup.a_shift_array[letter_shifted_by_a]
-
+        self.shift_applier(index_array, encrypted_message_array, soup.a_shift_array)
       else
         encryption_hash[:encryption] = encrypted_message_array.join
         return encryption_hash

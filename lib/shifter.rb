@@ -2,11 +2,11 @@ module Shifter
 
   def shift_converter(shift)
     if shift > 27
-    modulo_shift = shift % 27
+      modulo_shift = shift % 27
     else
-    modulo_shift = shift
-  end
-    converted_shift = 27 - modulo_shift
+      modulo_shift = shift
+    end
+    27 - modulo_shift
   end
 
   def date_shifter(date)
