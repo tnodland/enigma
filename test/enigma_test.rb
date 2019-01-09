@@ -85,7 +85,25 @@ class EnigmaTest < Minitest::Test
       :key=>"02029",
       :date=>"08012019"}
 
-    assert_equal expected, enigma.encrypt("hello world", "02029")
     assert_instance_of Hash, enigma.encrypt("hello world")
+    
+    #this test will probably fail tomorrow because the date will
+    #have changed
+    assert_equal expected, enigma.encrypt("hello world", "02029")
+  end
+
+  def test_it_can_adjust_shifts_for_decryption
+    enigma = Enigma.new
+    enigma.key_converter("21212")
+
+    enigma.shift_converter(enigma.a_shift)
+    enigma.shift_converter(enigma.b_shift)
+    enigma.shift_converter(enigma.c_shift)
+    enigma.shift_converter(enigma.d_shift)
+
+    assert_equal 21, enigma.a_shift
+    assert_equal 12, enigma.b_shift
+    assert_equal 21, enigma.c_shift
+    assert_equal 12, enigma.d_shift
   end
 end
