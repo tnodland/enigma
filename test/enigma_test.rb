@@ -79,17 +79,17 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_encrypt_with_limited_inputs
-    skip 
     enigma = Enigma.new
 
     expected = {:encryption=>"nfrsuabvxmj",
       :key=>"02029",
       :date=>"08012019"}
 
+    assert_instance_of Hash, enigma.encrypt("hello world")
+    
     #this test will probably fail tomorrow because the date will
     #have changed
     assert_equal expected, enigma.encrypt("hello world", "02029")
-    assert_instance_of Hash, enigma.encrypt("hello world")
   end
 
   def test_it_can_adjust_shifts_for_decryption

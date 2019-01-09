@@ -7,5 +7,4 @@ enigma = Enigma.new
 
 encrypted_message = enigma.encrypt(message)
 encrypted_file.write(encrypted_message[:encryption])
-puts "Created '#{ARGV[1]}' with the key #{encrypted_message[:key]}" +
-     " and date #{encrypted_message[:date]}."
+puts "Created '#{ARGV[1]}' with the key #{encrypted_message[:key]} and date #{encrypted_message[:date]}."
