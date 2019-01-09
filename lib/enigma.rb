@@ -73,12 +73,8 @@ class Enigma
     date: date}
     self.key_converter(key)
     self.date_shifter(date)
-    decrypt_a_shift = self.shift_converter(@a_shift)
-    decrypt_b_shift = self.shift_converter(@b_shift)
-    decrypt_c_shift = self.shift_converter(@c_shift)
-    decrypt_d_shift = self.shift_converter(@d_shift)
     index_array = self.index_converter(ciphertext)
-    soup = AlphabetSoup.new(decrypt_a_shift, decrypt_b_shift, decrypt_c_shift, decrypt_d_shift)
+    soup = AlphabetSoup.new(self.shift_converter(@a_shift), self.shift_converter(@b_shift), self.shift_converter(@c_shift), self.shift_converter(@d_shift))
     decrypted_message_array = []
 
     loop do
