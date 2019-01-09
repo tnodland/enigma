@@ -2,10 +2,12 @@ require 'pry'
 require './lib/alphabet_soup'
 require './lib/key_maker'
 require './lib/shifter'
+require './lib/converter'
 
 class Enigma
   include KeyMaker
   include Shifter
+  include Converter
 
   attr_reader :letters,
               :a_shift,
@@ -36,35 +38,13 @@ class Enigma
   end
 
   def encrypt(message, key = make_key, date = Time.now.strftime("%d%m%Y"))
-    encryption_hash = {encryption: "",
-    key: key,
-    date: date}
+    encryption_hash = {encryption: "", key: key, date: date}
     self.key_converter(key)
     self.date_shifter(date)
     index_array = self.index_converter(message)
     encrypted_message_array = []
     soup = AlphabetSoup.new(@a_shift, @b_shift, @c_shift, @d_shift)
-
-    loop do
-      if index_array.length >= 4
-        self.shift_applier(index_array, encrypted_message_array, soup.a_shift_array)
-        self.shift_applier(index_array, encrypted_message_array, soup.b_shift_array)
-        self.shift_applier(index_array, encrypted_message_array, soup.c_shift_array)
-        self.shift_applier(index_array, encrypted_message_array, soup.d_shift_array)
-      elsif index_array.length == 3
-        self.shift_applier(index_array, encrypted_message_array, soup.a_shift_array)
-        self.shift_applier(index_array, encrypted_message_array, soup.b_shift_array)
-        self.shift_applier(index_array, encrypted_message_array, soup.c_shift_array)
-      elsif index_array.length == 2
-        self.shift_applier(index_array, encrypted_message_array, soup.a_shift_array)
-        self.shift_applier(index_array, encrypted_message_array, soup.b_shift_array)
-      elsif index_array.length == 1
-        self.shift_applier(index_array, encrypted_message_array, soup.a_shift_array)
-      else
-        encryption_hash[:encryption] = encrypted_message_array.join
-        return encryption_hash
-      end
-    end
+    self.conversion_loop(index_array, encrypted_message_array, soup, encryption_hash)
   end
 
   def decrypt(ciphertext, key, date)
