@@ -85,6 +85,8 @@ class EnigmaTest < Minitest::Test
       :key=>"02029",
       :date=>"08012019"}
 
+    #this test will probably fail tomorrow because the date will
+    #have changed
     assert_equal expected, enigma.encrypt("hello world", "02029")
     assert_instance_of Hash, enigma.encrypt("hello world")
   end

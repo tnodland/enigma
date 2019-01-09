@@ -63,8 +63,6 @@ class Enigma
     soup = AlphabetSoup.new(@a_shift, @b_shift, @c_shift, @d_shift)
 
     loop do
-      temp_letter_array = []
-
       if index_array.length >= 4
         letter_shifted_by_a = index_array.shift
         encrypted_message_array << soup.a_shift_array[letter_shifted_by_a]
@@ -123,8 +121,6 @@ class Enigma
     decrypted_message_array = []
 
     loop do
-      temp_letter_array = []
-
       if index_array.length >= 4
         letter_shifted_by_a = index_array.shift
         decrypted_message_array << soup.a_shift_array[letter_shifted_by_a]
