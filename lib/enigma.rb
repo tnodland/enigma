@@ -29,12 +29,10 @@ class Enigma
     index_array = []
     message_array.each do |message_letter|
       @letters.each do |letter|
-        if message_letter == letter
-          index_array << @letters.index(letter)
-        end
+        index_array << @letters.index(letter)  if message_letter == letter
       end
     end
-    index_array
+    return index_array
   end
 
   def encrypt(message, key = make_key, date = Time.now.strftime("%d%m%Y"))
